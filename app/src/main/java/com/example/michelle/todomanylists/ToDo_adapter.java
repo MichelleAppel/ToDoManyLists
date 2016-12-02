@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ToDo_adapter extends ArrayAdapter<ToDo_item> {
 
     public ToDo_adapter(Context context, ArrayList<ToDo_item> values) {
-        super(context, R.layout.row_layout, values);
+        super(context, R.layout.row_layout_todo, values);
     }
 
     @NonNull
@@ -27,7 +27,7 @@ public class ToDo_adapter extends ArrayAdapter<ToDo_item> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-        View  view = inflater.inflate(R.layout.row_layout, parent, false);
+        View  view = inflater.inflate(R.layout.row_layout_todo, parent, false);
         ToDo_item item = getItem(position);
 
         TextView textView = (TextView) view.findViewById(R.id.todo_TextView);

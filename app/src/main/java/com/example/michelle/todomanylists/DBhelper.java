@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 class DBhelper extends SQLiteOpenHelper {
     // Set fields of database schema
-    private static final String DATABASE_NAME = "todo_database.db";
+    private String DATABASE_NAME;
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE = "todo_table";
 
@@ -23,8 +23,9 @@ class DBhelper extends SQLiteOpenHelper {
     private String is_checked = "is_checked";
 
     // Constructor
-    DBhelper(Context context) {
+    DBhelper(Context context, String DATABASE_NAME) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.DATABASE_NAME = DATABASE_NAME;
     }
 
     // onCreate
@@ -93,6 +94,21 @@ class DBhelper extends SQLiteOpenHelper {
     void delete(ToDo_item item) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE, " _id = ? ", new String[]{String.valueOf(item.id)});
+        db.close();
+    }
+
+    void clear() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String query = "SELECT _id , " + todo_string + " , " + is_checked + " FROM " + TABLE;
+        Cursor cursor = db.rawQuery(query, null);
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            db.delete(TABLE, " _id = ? ", new String[]{String.valueOf(id)});
+        }
+
+        cursor.close();
         db.close();
     }
 }

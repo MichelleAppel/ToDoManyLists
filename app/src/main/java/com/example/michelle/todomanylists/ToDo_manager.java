@@ -1,5 +1,7 @@
 package com.example.michelle.todomanylists;
 
+import java.util.ArrayList;
+
 /**
  * Created by Michelle on 29-11-2016.
  * The manager singleton class
@@ -8,7 +10,8 @@ package com.example.michelle.todomanylists;
 public class ToDo_manager {
 
     private static ToDo_manager instance = new ToDo_manager();
-    private static String string;
+
+    private ArrayList<ToDo_list> todo_lists = new ArrayList<>();
 
     public static ToDo_manager getInstance() {
         return instance;
@@ -16,16 +19,25 @@ public class ToDo_manager {
 
     // Constructor
     private ToDo_manager() {
-        string = "initial string";
     }
 
     // Setter
     public void setToDo_manager(String newString) {
-        string = newString;
+
     }
 
     // Getter
-    public String getToDo_manager() {
-        return string;
+    // Returns ToDoList ArrayList
+    public ArrayList<ToDo_list> getToDoLists() {
+        return todo_lists;
+    }
+
+    // Returns all ToDoList titles
+    public ArrayList<String> getTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (int i = 0; i < todo_lists.size(); i++) {
+            titles.add(todo_lists.get(i).toString());
+        }
+        return titles;
     }
 }

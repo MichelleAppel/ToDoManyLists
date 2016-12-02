@@ -7,11 +7,32 @@ import java.util.ArrayList;
  * ToDo_list class
  */
 
+import java.util.ArrayList;
+
 public class ToDo_list {
-    private ArrayList<ToDo_item> toDo_list = new ArrayList<>();
+
+    private String category;
+    private ArrayList<ToDo_item> toDo_items = new ArrayList<>();
 
     // Constructor
-    public ToDo_list(ArrayList<ToDo_item> toDo_list) {
-        this.toDo_list = toDo_list;
+    public ToDo_list(String category) {
+        this.category = category;
     }
+
+    // Constructor
+    public ToDo_list(String category, ArrayList<ToDo_item> toDo_items) {
+        this.category = category;
+        this.toDo_items = toDo_items;
+    }
+
+    // Returns title
+    public String toString() {
+        return category;
+    }
+
+    // Returns ToDo_items
+    public ArrayList<ToDo_item> getToDoItems() {
+        return toDo_items;
+    }
+
 }
